@@ -70,7 +70,7 @@ const RepositoryList = () => {
     <FlatList
       data={repositories}
       ItemSeparatorComponent={ItemSeparator}
-      renderItem={({ item }) => <RepoItem details={item} styles={styles}/>}
+      renderItem={({ item }) => <RepoItem details={item}/>}
       keyExtractor={item => item.id}
     />
   );

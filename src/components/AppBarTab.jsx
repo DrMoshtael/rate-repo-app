@@ -1,18 +1,14 @@
-import { Pressable, Text, StyleSheet } from "react-native";
-import theme from "../theme";
-
-
-const styles = StyleSheet.create({
-    tabText: {
-      color: theme.colors.textWhite,
-      padding: 20,
-      fontSize: theme.fontSizes.subheading
-    },
-  });
+import { Pressable } from "react-native";
+import Text from "./Text";
 
 const AppBarTab = ({children}) => (
     <Pressable>
-        <Text style={styles.tabText}>{children}</Text>
+        <Text 
+          fontSize='subheading' 
+          fontWeight='bold' 
+          color='white'
+          style={{ padding: 20 }}>
+            {children}</Text>
     </Pressable>
 );
 

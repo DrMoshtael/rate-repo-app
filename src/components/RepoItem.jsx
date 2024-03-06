@@ -1,15 +1,87 @@
-import { View, Text } from "react-native";
+import { View, Image, StyleSheet } from "react-native";
+import Text from "./Text";
+import theme from "../theme";
 
-const RepoItem = ({ details, styles }) => (
-    <View style={styles.item}>
-        <Text>Full name: {details.fullName}</Text>
-        <Text>Description: {details.description}</Text>
-        <Text>Language: {details.language}</Text>
-        <Text>Stars: {details.stargazersCount}</Text>
-        <Text>Forks: {details.forksCount}</Text>
-        <Text>Reviews: {details.reviewCount}</Text>
-        <Text>Rating: {details.ratingAverage}</Text>
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "white",
+    padding: 20,
+    flexDirection: 'column',
+    gap: 10
+  },
+  topContainer: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "flex-start",
+    gap: 20
+  },
+  detailsContainer: {
+    flex: 1,
+    alignItems: "flex-start",
+    gap: 5
+  },
+  avatar: {
+    width: 50,
+    height: 50,
+    borderRadius: 10
+  },
+  tag: {
+    backgroundColor: theme.colors.primary,
+    padding: 5,
+    borderRadius: 5,
+  },
+  statsContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-around"
+  },
+  stat: {
+    flex: 1,
+    alignItems: "center",
+  },
+});
+
+const RepoItem = ({ details }) => {
+  const formatNumber = (num) => {
+    if (num < 1000) return num;
+    else if (num < 1000000) return `${(num / 1000).toFixed(1)}k`;
+    else return `${(num / 1000000).toPrecision(3)}M`;
+  };
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.topContainer}>
+        <Image style={styles.avatar} source={{ uri: details.ownerAvatarUrl }} />
+        <View style={styles.detailsContainer}>
+          <Text fontSize="subheading" fontWeight="bold">
+            {details.fullName}
+          </Text>
+          <Text color='textSecondary'>{details.description}</Text>
+          <Text color="white" style={styles.tag}>
+            {details.language}
+          </Text>
+        </View>
+      </View>
+      <View style={styles.statsContainer}>
+        <View style={styles.stat}>
+          <Text fontWeight="bold">{formatNumber(details.stargazersCount)}</Text>
+          <Text color="textSecondary">Stars</Text>
+        </View>
+        <View style={styles.stat}>
+          <Text fontWeight="bold">{formatNumber(details.forksCount)}</Text>
+          <Text color="textSecondary">Forks</Text>
+        </View>
+        <View style={styles.stat}>
+          <Text fontWeight="bold">{formatNumber(details.reviewCount)}</Text>
+          <Text color="textSecondary">Reviews</Text>
+        </View>
+        <View style={styles.stat}>
+          <Text fontWeight="bold">{formatNumber(details.ratingAverage)}</Text>
+          <Text color="textSecondary">Rating</Text>
+        </View>
+      </View>
     </View>
-)
+  );
+};
 
 export default RepoItem;
