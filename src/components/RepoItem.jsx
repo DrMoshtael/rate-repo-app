@@ -7,18 +7,24 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 20,
     flexDirection: 'column',
-    gap: 10
+    gap: 10,
+    borderColor: 'black',
+    borderWidth: 2
   },
   topContainer: {
     flex: 1,
     flexDirection: "row",
     alignItems: "flex-start",
-    gap: 20
+    gap: 20,
+    borderColor: 'blue',
+    borderWidth: 2
   },
   detailsContainer: {
     flex: 1,
     alignItems: "flex-start",
-    gap: 5
+    gap: 5,
+    borderColor: 'red',
+    borderWidth: 2
   },
   avatar: {
     width: 50,
@@ -33,7 +39,9 @@ const styles = StyleSheet.create({
   statsContainer: {
     flex: 1,
     flexDirection: "row",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
+    borderColor: 'orange',
+    borderWidth: 2
   },
   stat: {
     flex: 1,

@@ -6,14 +6,18 @@ import theme from '../theme';
 const styles = StyleSheet.create({
   container: {
     paddingTop: Constants.statusBarHeight,
-    backgroundColor: theme.colors.appBar
+    backgroundColor: theme.colors.appBar,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start'
   },
 });
 
 const AppBar = () => {
   return (
   <View style={styles.container}>
-    <AppBarTab>Repos</AppBarTab>
+    <AppBarTab path='/'>Repos</AppBarTab>
+    <AppBarTab path='/signin'>Sign in</AppBarTab>
   </View>
   )
 };
