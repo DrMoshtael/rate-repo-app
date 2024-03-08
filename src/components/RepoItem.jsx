@@ -5,26 +5,24 @@ import theme from "../theme";
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
-    padding: 20,
-    flexDirection: 'column',
-    gap: 10,
+    padding: 15,
+    gap: 15,
     // borderColor: 'black',
     // borderWidth: 2
   },
   topContainer: {
-    flex: 1,
     flexDirection: "row",
-    alignItems: "flex-start",
     gap: 20,
     // borderColor: 'blue',
-    // borderWidth: 2
+    // borderWidth: 2,
   },
   detailsContainer: {
-    flex: 1,
     alignItems: "flex-start",
     gap: 5,
     // borderColor: 'red',
-    // borderWidth: 2
+    // borderWidth: 2,
+    flexGrow: 1,
+    flexShrink: 1
   },
   avatar: {
     width: 50,
@@ -37,14 +35,12 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   statsContainer: {
-    flex: 1,
     flexDirection: "row",
     justifyContent: "space-around",
     // borderColor: 'orange',
     // borderWidth: 2
   },
   stat: {
-    flex: 1,
     alignItems: "center",
   },
 });
@@ -53,7 +49,7 @@ const RepoItem = ({ details }) => {
   const formatNumber = (num) => {
     if (num < 1000) return num;
     else if (num < 1000000) return `${(num / 1000).toFixed(1)}k`;
-    else return `${(num / 1000000).toPrecision(3)}M`;
+    else return `${(num / 1000000).toFixed(1)}M`;
   };
 
   return (
