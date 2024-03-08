@@ -8,23 +8,23 @@ const styles = StyleSheet.create({
     padding: 20,
     flexDirection: 'column',
     gap: 10,
-    borderColor: 'black',
-    borderWidth: 2
+    // borderColor: 'black',
+    // borderWidth: 2
   },
   topContainer: {
     flex: 1,
     flexDirection: "row",
     alignItems: "flex-start",
     gap: 20,
-    borderColor: 'blue',
-    borderWidth: 2
+    // borderColor: 'blue',
+    // borderWidth: 2
   },
   detailsContainer: {
     flex: 1,
     alignItems: "flex-start",
     gap: 5,
-    borderColor: 'red',
-    borderWidth: 2
+    // borderColor: 'red',
+    // borderWidth: 2
   },
   avatar: {
     width: 50,
@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-around",
-    borderColor: 'orange',
-    borderWidth: 2
+    // borderColor: 'orange',
+    // borderWidth: 2
   },
   stat: {
     flex: 1,
