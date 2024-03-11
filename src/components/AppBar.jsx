@@ -19,12 +19,7 @@ const styles = StyleSheet.create({
 
 const AppBar = () => {
   const signOut = useSignOut();
-  const user = useQuery(ME, {
-    fetchPolicy: 'cache-and-network'
-  });
-  console.log('usrbefore',user)
-  if (user.loading) return <Text>loading...</Text>
-  console.log('usrafter',user)
+  const user = useQuery(ME);
   console.log('usr?',user.data?.me)
 
   return (
