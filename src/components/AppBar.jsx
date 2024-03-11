@@ -20,15 +20,11 @@ const styles = StyleSheet.create({
 const AppBar = () => {
   const signOut = useSignOut();
   const user = useQuery(ME);
-  console.log('usr?',user.data?.me)
 
   return (
     <View style={styles.container}>
       <ScrollView horizontal>
         <AppBarTab path="/">Repos</AppBarTab>
-        <Pressable onPress={signOut}>
-            <Text color="white" style={{ padding: 20 }}>Sign out</Text>
-          </Pressable>
         {user.data?.me ? (
           <Pressable onPress={signOut}>
             <Text
