@@ -10,6 +10,7 @@ import {
 import theme from "../theme";
 import * as yup from "yup";
 import useSignIn from "../hooks/useSignIn";
+import { useNavigate } from "react-router-native";
 
 const styles = StyleSheet.create({
   page: {
@@ -52,6 +53,7 @@ const validationSchema = yup.object().shape({
 
 const SignIn = () => {
   const [signIn] = useSignIn();
+  const navigate = useNavigate();
 
   const onSubmit = async (values, { resetForm }) => {
     const { username, password} = values;
@@ -59,9 +61,10 @@ const SignIn = () => {
     try {
       const { data } = await signIn({ username, password });
       console.log('dta',data);
-      resetForm()
+      navigate('/')
+      resetForm();
     } catch (e) {
-      console.log(e);
+      console.log('sign in error: ',e);
     }
   };
 
