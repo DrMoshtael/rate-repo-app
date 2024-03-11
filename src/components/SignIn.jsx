@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import theme from "../theme";
 import * as yup from "yup";
+import useSignIn from "../hooks/useSignIn";
 
 const styles = StyleSheet.create({
   page: {
@@ -50,8 +51,18 @@ const validationSchema = yup.object().shape({
 });
 
 const SignIn = () => {
-  const onSubmit = (values) => {
-    console.log(values);
+  const [signIn] = useSignIn();
+
+  const onSubmit = async (values, { resetForm }) => {
+    const { username, password} = values;
+
+    try {
+      const { data } = await signIn({ username, password });
+      console.log('dta',data);
+      resetForm()
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const initialValues = {
