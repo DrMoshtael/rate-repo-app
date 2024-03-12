@@ -51,22 +51,7 @@ const validationSchema = yup.object().shape({
     .required("Password is required"),
 });
 
-const SignIn = () => {
-  const [signIn] = useSignIn();
-  const navigate = useNavigate();
-
-  const onSubmit = async (values, { resetForm }) => {
-    const { username, password} = values;
-
-    try {
-      const { data } = await signIn({ username, password });
-      console.log('dta',data);
-      navigate('/')
-      resetForm();
-    } catch (e) {
-      console.log('sign in error: ',e);
-    }
-  };
+export const SignInContainer = ({ onSubmit }) => {
 
   const initialValues = {
     username: "",
@@ -106,5 +91,24 @@ const SignIn = () => {
     </View>
   );
 };
+
+const SignIn = () => {
+  const [signIn] = useSignIn();
+  const navigate = useNavigate();
+
+  const onSubmit = async (values, { resetForm }) => {
+    const { username, password} = values;
+
+    try {
+      const { data } = await signIn({ username, password });
+      console.log('dta',data);
+      navigate('/')
+      resetForm();
+    } catch (e) {
+      console.log('sign in error: ',e);
+    }
+  };
+  return <SignInContainer onSubmit={onSubmit} />
+}
 
 export default SignIn;
