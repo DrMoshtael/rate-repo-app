@@ -1,12 +1,13 @@
-import { Pressable, View, StyleSheet } from "react-native";
+import { Pressable, View, StyleSheet, FlatList } from "react-native";
 import Text from "./Text";
 import RepoItem from "./RepoItem";
 import theme from "../theme";
 import * as Linking from "expo-linking";
 import useRepository from "../hooks/useRepository";
 import { useParams } from "react-router-native";
+import ReviewItem from "./ReviewItem";
 
-const styles = new StyleSheet.create({
+const styles = StyleSheet.create({
   button: {
     backgroundColor: theme.colors.primary,
     borderRadius: 5,
@@ -17,18 +18,15 @@ const styles = new StyleSheet.create({
     marginTop: 5
   },
   container: {
-    backgroundColor: 'white'
-  }
+    backgroundColor: "white",
+    marginBottom: 10
+  },
+  separator: {
+    height: 10,
+  },
 });
 
-const RepoItemExpanded = () => {
-  const { id } = useParams();
-  const { repository, error, loading } = useRepository(id);
-  console.log("repobefore", repository);
-  if (error) return <Text>{error.message}</Text>;
-  if (loading) return <Text>loading...</Text>;
-  console.log("repoafter", repository);
-
+const RepoInfo = ({ repository }) => {
   return (
     <View>
       <RepoItem details={repository} />
@@ -43,6 +41,29 @@ const RepoItemExpanded = () => {
         </Pressable>
       </View>
     </View>
+  );
+};
+
+const ItemSeparator = () => <View style={styles.separator} />;
+
+const RepoItemExpanded = () => {
+  const { id } = useParams();
+  const { repository, error, loading } = useRepository(id);
+
+  if (error) return <Text>{error.message}</Text>;
+  if (loading) return <Text>loading...</Text>;
+  console.log("repoafter", repository);
+
+  const reviews = repository.reviews ? repository.reviews.edges.map(e => e.node) : [];
+
+  return (
+    <FlatList 
+        data={reviews}
+        renderItem={({ item }) => <ReviewItem review={item} />}
+        keyExtractor={({ id }) => id}
+        ListHeaderComponent={() => <RepoInfo repository={repository} />}
+        ItemSeparatorComponent={ItemSeparator}
+    />
   );
 };
 
