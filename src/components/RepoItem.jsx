@@ -53,34 +53,34 @@ const RepoItem = ({ details }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View testID='repoItem' style={styles.container}>
       <View style={styles.topContainer}>
         <Image style={styles.avatar} source={{ uri: details.ownerAvatarUrl }} />
         <View style={styles.detailsContainer}>
-          <Text fontSize="subheading" fontWeight="bold">
+          <Text testID='repoItemName' fontSize="subheading" fontWeight="bold">
             {details.fullName}
           </Text>
-          <Text color='textSecondary'>{details.description}</Text>
-          <Text color="white" style={styles.tag}>
+          <Text testID='repoItemDesc' color='textSecondary'>{details.description}</Text>
+          <Text testID='repoItemLang' color="white" style={styles.tag}>
             {details.language}
           </Text>
         </View>
       </View>
       <View style={styles.statsContainer}>
         <View style={styles.stat}>
-          <Text fontWeight="bold">{formatNumber(details.stargazersCount)}</Text>
+          <Text testID='repoItemStars' fontWeight="bold">{formatNumber(details.stargazersCount)}</Text>
           <Text color="textSecondary">Stars</Text>
         </View>
         <View style={styles.stat}>
-          <Text fontWeight="bold">{formatNumber(details.forksCount)}</Text>
+          <Text testID='repoItemForks' fontWeight="bold">{formatNumber(details.forksCount)}</Text>
           <Text color="textSecondary">Forks</Text>
         </View>
         <View style={styles.stat}>
-          <Text fontWeight="bold">{formatNumber(details.reviewCount)}</Text>
+          <Text testID='repoItemReviews' fontWeight="bold">{formatNumber(details.reviewCount)}</Text>
           <Text color="textSecondary">Reviews</Text>
         </View>
         <View style={styles.stat}>
-          <Text fontWeight="bold">{formatNumber(details.ratingAverage)}</Text>
+          <Text testID='repoItemRating' fontWeight="bold">{formatNumber(details.ratingAverage)}</Text>
           <Text color="textSecondary">Rating</Text>
         </View>
       </View>
