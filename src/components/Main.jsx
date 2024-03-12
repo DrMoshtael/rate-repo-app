@@ -3,12 +3,14 @@ import RepoList from "./RepoList";
 import AppBar from "./AppBar";
 import { Route, Routes, Navigate } from 'react-router-native';
 import SignIn from "./SignIn";
+import RepoItemExpanded from "./RepoItemExpanded";
+import theme from "../theme";
 
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     flexShrink: 1,
-    backgroundColor: '#e1e4e8'
+    backgroundColor: theme.colors.backgroundGrey
   },
 });
 
@@ -19,6 +21,7 @@ const Main = () => {
       <Routes>
         <Route path='/' element={<RepoList />} />
         <Route path='/signin' element={<SignIn />} />
+        <Route path='/:id' element={<RepoItemExpanded />} />
         <Route path='*' element={<Navigate to='/' replace />} />
       </Routes>
     </View>
