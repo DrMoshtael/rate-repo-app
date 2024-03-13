@@ -44,7 +44,12 @@ const styles = StyleSheet.create({
 const validationSchema = yup.object().shape({
   ownerName: yup.string().required("Repo owner name is required"),
   repositoryName: yup.string().required("Repo name is required"),
-  rating: yup.number("Rating must be a number between 0 and 100").required("Rating is required"),
+  rating: yup
+    .number()
+    .required("Rating is required")
+    .min(0,"Rating must be between 0 and 100")
+    .max(100,"Rating must be between 0 and 100")
+    .typeError("Rating must be a number between 0 and 100"),
   text: yup.string(),
 });
 
@@ -113,6 +118,7 @@ const ReviewForm = () => {
         )}
         <TextInput
           placeholder="Rating between 0 and 100"
+          type="number"
           value={formik.values.rating}
           onChangeText={formik.handleChange("rating")}
           onBlur={formik.handleBlur("rating")}
@@ -141,7 +147,7 @@ const ReviewForm = () => {
         />
         {formik.touched.text && formik.errors.text && (
           <Text style={{ color: theme.colors.error }}>
-            {formik.errors.repositoryName}
+            {formik.errors.text}
           </Text>
         )}
         <Pressable onPress={formik.handleSubmit} style={styles.button}>

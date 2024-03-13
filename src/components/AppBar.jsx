@@ -40,6 +40,7 @@ const AppBar = () => {
         ) : (
           <AppBarTab path="/signin">Sign in</AppBarTab>
         )}
+        {!user.data?.me && <AppBarTab path='/signup'>Sign up</AppBarTab>}
       </ScrollView>
     </View>
   );

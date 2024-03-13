@@ -6,6 +6,7 @@ import SignIn from "./SignIn";
 import RepoItemExpanded from "./RepoItemExpanded";
 import theme from "../theme";
 import ReviewForm from "./ReviewForm";
+import SignUpForm from "./SignUpForm";
 
 const styles = StyleSheet.create({
   container: {
@@ -24,6 +25,7 @@ const Main = () => {
         <Route path='/create_review' element={<ReviewForm />} />
         <Route path='/signin' element={<SignIn />} />
         <Route path='/:id' element={<RepoItemExpanded />} />
+        <Route path='/signup' element={<SignUpForm />} />
         <Route path='*' element={<Navigate to='/' replace />} />
       </Routes>
     </View>
