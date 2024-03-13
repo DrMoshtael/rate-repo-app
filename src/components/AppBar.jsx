@@ -26,6 +26,7 @@ const AppBar = () => {
       <ScrollView horizontal>
         <AppBarTab path="/">Repos</AppBarTab>
         {user.data?.me && <AppBarTab path='/create_review'>Create a review</AppBarTab>}
+        {user.data?.me && <AppBarTab path='/my_reviews'>My reviews</AppBarTab>}
         {user.data?.me ? (
           <Pressable onPress={signOut}>
             <Text

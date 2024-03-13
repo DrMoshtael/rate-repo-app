@@ -26,5 +26,8 @@ export const REVIEW_FIELDS = gql`
      username
    }
    repositoryId
+   repository {
+    fullName
+   }
   }
 `

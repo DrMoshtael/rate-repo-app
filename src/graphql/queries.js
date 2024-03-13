@@ -32,10 +32,18 @@ ${REVIEW_FIELDS}
 `;
 
 export const ME = gql`
-    query {
-      me {
-        id
-        username
+query Me($includeReviews: Boolean = false) {
+  me {
+    id
+    username
+    reviews @include(if: $includeReviews) {
+      edges {
+        node {
+          ...ReviewFields
+        }
       }
     }
+  }
+}
+${REVIEW_FIELDS}
 `;
