@@ -52,7 +52,6 @@ const RepoItemExpanded = () => {
 
   if (error) return <Text>{error.message}</Text>;
   if (loading) return <Text>loading...</Text>;
-  console.log("repoafter", repository);
 
   const reviews = repository.reviews ? repository.reviews.edges.map(e => e.node) : [];
 

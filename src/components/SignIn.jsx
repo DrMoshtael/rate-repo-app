@@ -67,7 +67,8 @@ export const SignInContainer = ({ onSubmit }) => {
           placeholder="Username"
           value={formik.values.username}
           onChangeText={formik.handleChange("username")}
-          style={formik.errors.username ? [styles.input, {borderColor: theme.colors.error}] : styles.input}
+          onBlur={formik.handleBlur("username")}
+          style={formik.touched.username && formik.errors.username ? [styles.input, {borderColor: theme.colors.error}] : styles.input}
         />
         {formik.touched.username && formik.errors.username && (
           <Text style={{ color: theme.colors.error }}>{formik.errors.username}</Text>
@@ -77,7 +78,8 @@ export const SignInContainer = ({ onSubmit }) => {
           value={formik.values.password}
           onChangeText={formik.handleChange("password")}
           secureTextEntry
-          style={formik.errors.password ? [styles.input, {borderColor: theme.colors.error}] : styles.input}
+          onBlur={formik.handleBlur("password")}
+          style={formik.touched.password && formik.errors.password ? [styles.input, {borderColor: theme.colors.error}] : styles.input}
         />
         {formik.touched.password && formik.errors.password && (
           <Text style={{ color: theme.colors.error }}>{formik.errors.password}</Text>
@@ -100,8 +102,7 @@ const SignIn = () => {
     const { username, password} = values;
 
     try {
-      const { data } = await signIn({ username, password });
-      console.log('dta',data);
+      await signIn({ username, password });
       navigate('/')
       resetForm();
     } catch (e) {
