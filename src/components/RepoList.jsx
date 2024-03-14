@@ -67,8 +67,10 @@ export const RepositoryListContainer = ({
   principle,
   setPrinciple,
   searchQuery,
-  setSearchQuery
+  setSearchQuery,
+  onEndReach
 }) => {
+
   const repositoryNodes = repositories
     ? repositories.edges.map((edge) => edge.node)
     : [];
@@ -76,6 +78,8 @@ export const RepositoryListContainer = ({
   return (
     <FlatList
       data={repositoryNodes}
+      onEndReached={onEndReach}
+      onEndReachedThreshold={0.5}
       ItemSeparatorComponent={ItemSeparator}
       renderItem={({ item }) => (
         <Link to={`/${item.id}`}>
@@ -99,11 +103,16 @@ const RepositoryList = () => {
   const [principle, setPrinciple] = useState("Latest repositories");
   const [searchQuery, setSearchQuery] = useState('');
   const [searchKeyword] = useDebounce(searchQuery, 200);
-  const { repositories } = useRepositories(principle, searchKeyword);
+  const { repositories, fetchMore } = useRepositories(principle, searchKeyword, 6);
+
+  const onEndReach = () => {
+    fetchMore();
+  }
 
   return (
     <RepositoryListContainer
       repositories={repositories}
+      onEndReach={onEndReach}
       principle={principle}
       setPrinciple={setPrinciple}
       searchQuery={searchQuery}

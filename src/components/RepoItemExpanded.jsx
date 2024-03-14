@@ -48,16 +48,23 @@ const ItemSeparator = () => <View style={styles.separator} />;
 
 const RepoItemExpanded = () => {
   const { id } = useParams();
-  const { repository, error, loading } = useRepository(id);
+  const { repository, error, loading, fetchMore } = useRepository(id, 5);
 
   if (error) return <Text>{error.message}</Text>;
   if (loading) return <Text>loading...</Text>;
 
   const reviews = repository.reviews ? repository.reviews.edges.map(e => e.node) : [];
 
+  const onEndReach = () => {
+    console.log('fetching more')
+    fetchMore();
+  }
+
   return (
     <FlatList 
         data={reviews}
+        onEndReached={onEndReach}
+        onEndReachedThreshold={0.5}
         renderItem={({ item }) => <ReviewItem review={item} />}
         keyExtractor={({ id }) => id}
         ListHeaderComponent={() => <RepoInfo repository={repository} />}
